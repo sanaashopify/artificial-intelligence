@@ -124,7 +124,8 @@ class Maze():
 
         # Initialize frontier to just the starting position
         start = Node(state=self.start, parent=None, action=None)
-        frontier = StackFrontier()
+        frontier = StackFrontier()  # FOR DFS
+        # frontier = QueueFrontier() # FOR BFS
         frontier.add(start)  # initially will contain start state
 
         # Initialize an empty explored set
@@ -228,3 +229,4 @@ print("States Explored:", m.num_explored)
 print("Solution:")
 m.print()
 m.output_image("maze.png", show_explored=True)
+# remove show_explored to not show which paths the program explored
