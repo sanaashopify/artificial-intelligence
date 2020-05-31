@@ -41,7 +41,6 @@ def actions(board):
     """
     if terminal(board):
         return 0
-    symbol = X if player else O
 
     possible_actions = set()
     for i, row in enumerate(board):
@@ -66,8 +65,9 @@ def result(board, action):
             board_copy[action[0]][action[1]] == X
         else:
             board_copy[action[0]][action[1]] == O
-    
+
     return board_copy
+
 
 def winner(board):
     """
@@ -88,15 +88,12 @@ def winner(board):
     potential_wins.append(set([board[i][2 - i] for i in range(3)]))
 
     # Checking if any three are the same
-    for trio in potential_wins:
-        if trio == {X}:
-            return X_Wins
-        elif trio == {O}:
-            return O_Wins
-    return Draw
-
-
-    raise NotImplementedError
+    for win in potential_wins:
+        if win == {X}:
+            return X
+        elif win == {O}:
+            return O
+    return -1
 
 
 def terminal(board):
@@ -109,8 +106,6 @@ def terminal(board):
         else:
             return True
 
-    raise NotImplementedError
-
 
 def utility(board):
     """
@@ -122,8 +117,6 @@ def utility(board):
         return -1
     else:
         return 0
-
-    raise NotImplementedError
 
 
 def minimax(board):
